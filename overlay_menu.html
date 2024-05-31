@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+    <title>Ask d-A-v-I-d Main Menu</title>
+
+<style>
+
+  html  {
+    font-family: 'Arial', sans-serif;
+ }
+
+  body {
+    font-family: 'Arial', sans-serif;
+ }
+
+
+        .overlay-menu {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            /* background-color: #f9f9f9; */ /* is light gray */
+        }
+        .overlay-menu-item {
+            list-style: none;
+            padding: 0;
+            cursor: pointer;
+        }
+        .overlay-menu-item > li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .overlay-menu-item > li:hover {
+            background-color: #efefef;
+        }
+        .overlay-submenu {
+            list-style: none;
+            padding-left: 20px;
+            display: none;
+        }
+        .overlay-submenu li {
+            padding: 5px 10px;
+        }
+        .overlay-submenu li:hover {
+            background-color: #e0e0e0;
+        }
+
+
+.overlay-menu-title {
+    color: #162739; /* Your primary blue, for consistency */
+    margin-bottom: 20px; /* Adds some space between the title and the first menu item */
+    padding-left: 10px; /* Aligns with your menu items, adjust as needed */
+    font-size: 24px; /* Adjust size as needed */
+    font-family: 'Arial', sans-serif; /* Ensures font consistency */
+}
+
+
+.overlay-menu-item > li {
+    color: #162739; /* adds our blue */
+}
+
+
+.overlay-menu-item > li > i {
+    margin-right: 10px; /* Adjusts spacing between icon and text to 10px */
+    color: #85A842; /* Adds our green color */
+}
+
+.overlay-submenu li {
+    padding-left: 30px; /* Increase this value as needed */
+}
+
+.overlay-submenu li a {
+    color: #4A90E2; /* Lighter shade of blue for submenu items */
+    text-decoration: none; /* Removes the underline from links */
+}
+
+
+    </style>
+</head>
+<body>
+
+
+<div class="overlay-menu">
+ <div class="overlay-menu-title">Main Menu</div>
+<ul class="overlay-menu-item">
+    <li data-target="overlayAskDavid"><i class="fas fa-question-circle"></i> Ask d-A-v-I-d</li>
+    <ul class="overlay-submenu" id="overlayAskDavid" style="display: none;">
+        <li><a href="/davidgpt/ask_question_s1.html">Ask d-A-v-I-d</a></li>
+    </ul>
+
+    <li data-target="overlayActivity"><i class="fas fa-solid fa-dumbbell"></i> Activity</li>
+    <ul class="overlay-submenu" id="overlayActivity" style="display: none;">
+        <li><a href="/davidgpt/workout/academic_ascent.html">Academic Ascent Workout</a></li>
+    </ul>
+
+
+</ul>
+</div>
+
+
+
+
+    <script>
+        function overlayToggleSubmenu(submenuId) {
+            var submenu = document.getElementById(submenuId);
+            submenu.style.display = submenu.style.display === "block" ? "none" : "block";
+        }
+
+        // Enhanced to bind click events based on data-target attribute
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.overlay-menu-item > li').forEach(item => {
+                item.onclick = () => {
+                    const submenuId = item.getAttribute('data-target');
+                    if (submenuId) {
+                        overlayToggleSubmenu(submenuId);
+                    }
+                };
+            });
+        });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Find all main menu items
+    const menuItems = document.querySelectorAll('.overlay-menu-item > li');
+    
+    menuItems.forEach(item => {
+        item.addEventListener('click', function() {
+            // Retrieve the ID of the submenu associated with the clicked menu item
+            const targetSubmenuId = this.getAttribute('data-target');
+            
+            // Close all submenus before opening the new one
+            document.querySelectorAll('.overlay-submenu').forEach(submenu => {
+                // Check if this submenu is the one to be opened and if it is already open
+                if(submenu.id === targetSubmenuId && submenu.style.display === "block") {
+                    // This submenu is already open, so close it
+                    submenu.style.display = "none";
+                } else {
+                    // Close all submenus
+                    submenu.style.display = "none";
+                }
+            });
+            
+            // Toggle the clicked submenu only if it was not already open
+            const targetSubmenu = document.getElementById(targetSubmenuId);
+            if(targetSubmenu.style.display !== "block") {
+                targetSubmenu.style.display = "block";
+            }
+        });
+    });
+});
+
+
+
+    </script>
+
+</body>
+</html>
